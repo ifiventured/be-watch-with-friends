@@ -1,0 +1,30 @@
+DROP TABLE IF EXISTS Users
+DROP TABLE IF EXISTS Watchlist 
+DROP TABLE IF EXISTS Groups
+DROP TABLE IF EXISTS GroupMembers
+
+CREATE TABLE Users (
+    user_id SERIAL PRIMARY KEY,
+    username VARCHAR NOT NULL UNIQUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+)
+
+CREATE TABLE Watchlist (
+    watchlist_id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
+    tmdb_id INT NOT NULL,
+    added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+)
+
+CREATE TABLE Groups (
+group_id SERIAL PRIMARY KEY,
+group_name VARCHAR NOT NULL UNIQUE,
+organiser_user_id INT NOT NULL,
+tmdb_id INT,
+episodes_per_week INT,
+)
+
+CREATE TABLE GroupMembers (
+    group_id INT NOT NULL
+    user_id INT NOT NULL
+)
