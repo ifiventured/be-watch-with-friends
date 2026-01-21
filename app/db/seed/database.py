@@ -92,26 +92,5 @@ for grmember in data_grmember:
 
 tables = ["Groups", "GroupMembers", "Watchlist", "Users"]
 
-for table in tables:
-    print(f"Exporting table: {table}")
-
-    # Always quote table names if they have capitals
-    query = f'SELECT * FROM {table}'
-    cursor.execute(query)
-
-    # Get column names
-    columns = [desc[0] for desc in cursor.description]
-
-    # Open a file for this table
-    filename = f"{table}.txt"
-    with open(filename, "w", encoding="utf-8") as f:
-        # Write header
-        f.write("\t".join(columns) + "\n")
-
-        # Write rows
-        for row in cursor:
-            f.write("\t".join(str(v) if v is not None else "" for v in row) + "\n")
-
-    print(f"Table {table} exported to {filename}")
 cursor.close
 con.close

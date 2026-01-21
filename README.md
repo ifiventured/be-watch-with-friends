@@ -67,7 +67,7 @@ once inside, we can check users:
 -- Check users
 \du
 
--- set a passowrd for the postgres user
+-- set a password for the postgres user
 ALTER USER postgres WITH PASSWORD 'newpassword';
 ```
 
@@ -77,3 +77,17 @@ once you've changed your password, you can use:
 \q
 exit
 ```
+
+### requirements.txt
+
+In the virtual environment, run the following:
+
+$ pip freeze > requirements.txt
+
+This will create your requirements file.
+
+Then run:
+
+$ pip install -r requirements.txt
+
+This installs needed dependencies to run the code.
