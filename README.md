@@ -32,3 +32,48 @@ source .venv/bin/activate
 pip install "fastapi[standard]"
 pip install pg8000
 ```
+
+### 5. Setup your pw.py file
+
+pg8000 wants us to have a connection file, inside of app/db/seed, setup a file name pw.py with the contents:
+
+```python
+import pg8000
+
+def get_connection():
+    return pg8000.connect(
+        user="postgres",
+        password="",
+        host="localhost",
+        port=5432,
+        database="postgres"
+)
+```
+
+enter your password into the correct section and add the pw.py file to your .gitignore
+
+### 5.5. Authentication error
+
+If your connection is refused by PSQL due to 'password authentication failed for user postgres', or you can't remember your PSQL password, switch to system user postgres and open PSQL
+
+```bash
+sudo -i -u postgres
+psql
+```
+
+once inside, we can check users:
+
+```sql
+-- Check users
+\du
+
+-- set a passowrd for the postgres user
+ALTER USER postgres WITH PASSWORD 'newpassword';
+```
+
+once you've changed your password, you can use:
+
+```sql
+\q
+exit
+```
