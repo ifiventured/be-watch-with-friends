@@ -1,13 +1,26 @@
 from pw import get_connection
+import json
+from datetime import datetime
 
 con = get_connection()
 con.autocommit = True
 cursor = con.cursor()
 
+with open("app/db/test_data/MOCK_USER_DATA.json", "r") as userfile:
+    data_user = json.load(userfile)
+
+with open("app/db/test_data/MOCK_GROUP_DATA.json", "r") as groupfile:
+    data_group = json.load(groupfile)
+
+with open("app/db/test_data/MOCK_WATCHLIST_DATA.json", "r") as watchlistfile:
+    data_watchlist = json.load(watchlistfile)
+
+with open("app/db/test_data/MOCK_GROUP_MEMBER_DATA.json", "r") as grmemberfile:
+    data_grmember = json.load(grmemberfile)
+
 db_name = "BEUserDatabase"
 cursor.execute(f'DROP DATABASE IF EXISTS {db_name}')
 cursor.execute(f'CREATE DATABASE {db_name}')
-print(f"Database {db_name} created succesfully!")
 
 cursor.execute("DROP TABLE IF EXISTS Users CASCADE")
 cursor.execute("DROP TABLE IF EXISTS Watchlist CASCADE")
@@ -18,10 +31,10 @@ cursor.execute("""
     CREATE TABLE Users (
         user_id SERIAL PRIMARY KEY, 
         username VARCHAR NOT NULL UNIQUE, 
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        password_hash VARCHAR,
+        created_at DATE DEFAULT CURRENT_DATE
        )
 """)
-print("Table 'Users' created")
 
 cursor.execute("""
     CREATE TABLE Watchlist (
@@ -31,8 +44,6 @@ cursor.execute("""
         added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
 """)
-print("Table 'Watchlist' created")
-
 cursor.execute("""
     CREATE TABLE Groups (
         group_id SERIAL PRIMARY KEY,
@@ -42,7 +53,6 @@ cursor.execute("""
         episodes_per_week INT
         )           
 """)
-print("Table 'Groups' created")
 
 cursor.execute("""
     CREATE TABLE GroupMembers (
@@ -50,13 +60,58 @@ cursor.execute("""
         user_id INT NOT NULL
         )           
 """)
-print("Table 'GroupMembers' created")
 
-# for title in ("Ender's Game", "The Magus", "Starlight"):
-#     con.run("INSERT INTO book (title) VALUES (:title)", title=title)
+for user in data_user:
+    created_at = datetime.strptime(user["created_at"], "%m/%d/%Y").date()
+    cursor.execute("""INSERT INTO Users (user_id, username, password_hash, created_at)
+                   VALUES (%s, %s, %s, %s)
+                   """, 
+                   (user["user_id"], user["username"], user["password_hash"], user["created_at"]))
 
-# for row in con.run("SELECT * FROM book"):
-#     print(row)
 
+for group in data_group:
+        cursor.execute("""INSERT INTO Groups (group_id, group_name, organiser_user_id, tmdb_id, episodes_per_week)
+                   VALUES (%s, %s, %s, %s, %s)
+                   """, 
+                   (group["group_id"], group["group_name"], group["organiser_user_id"], group["tmdb_id"], group["episodes_per_week"]))
+
+
+for watchlist in data_watchlist:
+        created_at = datetime.strptime(user["created_at"], "%m/%d/%Y").date()
+        cursor.execute("""INSERT INTO Watchlist (watchlist_id, user_id, tmdb_id, added_at)
+                   VALUES (%s, %s, %s, %s)
+                   """, 
+                   (watchlist["watchlist_id"], watchlist["user_id"], watchlist["tmdb_id"], watchlist["added_at"]))
+
+
+for grmember in data_grmember:
+        cursor.execute("""INSERT INTO GroupMembers (group_id, user_id)
+                   VALUES (%s, %s)
+                   """, 
+                   (grmember["group_id"], grmember["user_id"]))
+
+tables = ["Groups", "GroupMembers", "Watchlist", "Users"]
+
+for table in tables:
+    print(f"Exporting table: {table}")
+
+    # Always quote table names if they have capitals
+    query = f'SELECT * FROM {table}'
+    cursor.execute(query)
+
+    # Get column names
+    columns = [desc[0] for desc in cursor.description]
+
+    # Open a file for this table
+    filename = f"{table}.txt"
+    with open(filename, "w", encoding="utf-8") as f:
+        # Write header
+        f.write("\t".join(columns) + "\n")
+
+        # Write rows
+        for row in cursor:
+            f.write("\t".join(str(v) if v is not None else "" for v in row) + "\n")
+
+    print(f"Table {table} exported to {filename}")
 cursor.close
 con.close
