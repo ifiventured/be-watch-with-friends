@@ -1,4 +1,5 @@
 #__init__ python constructor - birth of an object
+# uses dictionaries instead of tables 
 
 from dataclasses import dataclass
 #for readability

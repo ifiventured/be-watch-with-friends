@@ -23,4 +23,22 @@ def add_to_watchlist(body: WatchlistCreateBody, user=Depends(get_current_user)):
     )
     return item
 
-    # needs a get, delete and patch 
+@router.get("/watchlist")
+def list_watchlist(user=Depends(get_current_user)):
+    return watchlist_store.list_items(user.user_id)
+
+
+@router.delete("/watchlist/{item_id}")
+def remove_from_watchlist(item_id: str, user=Depends(get_current_user)):
+    removed = watchlist_store.remove_item(user.user_id, item_id)
+    if not removed:
+        raise HTTPException(status_code=404, detail="Item not found")
+    return {"deleted": True}
+
+
+@router.patch("/watchlist/{item_id}/complete")
+def mark_complete(item_id: str, user=Depends(get_current_user)):
+    item = watchlist_store.mark_complete(user.user_id, item_id)
+    if not item:
+        raise HTTPException(status_code=404, detail="Item not found")
+    return item
