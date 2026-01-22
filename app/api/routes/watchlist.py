@@ -7,3 +7,4 @@ router = APIRouter(tags=["watchlist"])
 @router.get("/watchlist")
 def list_watchlist(user=Depends(get_current_user)):
     return WATCHLIST_BY_USER_ID.get(user.user_id, [])
+ 
