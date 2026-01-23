@@ -1,3 +1,5 @@
+# the fake user data from the json to populate the users
+
 import json
 from pathlib import Path
 from app.core.dev_user import User

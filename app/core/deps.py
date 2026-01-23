@@ -5,3 +5,6 @@ from app.core.dev_user import DEV_USER
 def get_current_user():
     # again, temp for now, we'll add the token auth logic later
     return DEV_USER
+
+# describes how routes get a user
+# deals with who the current users for any given request is
