@@ -1,3 +1,5 @@
+# the fake user data from the json to populate the watchlists
+
 import json
 from dataclasses import dataclass
 from pathlib import Path

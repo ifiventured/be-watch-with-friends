@@ -1,12 +1,4 @@
-# class	defines a class
-#def	defines a function
-# from	imports from a module
-
-# file prevents crashes and writing of repetitive code
-# resolves all dependencies before route function is executed
-
-
-from fastapi import APIRouter, Depends
+# from fastapi import APIRouter, Depends
 from app.core.deps import get_current_user
 
 router = APIRouter()

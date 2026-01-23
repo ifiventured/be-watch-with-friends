@@ -1,3 +1,5 @@
+# creates a constant single user object so BE behaves as if someone is logged in
+
 from dataclasses import dataclass
 
 @dataclass
