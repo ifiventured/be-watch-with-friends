@@ -50,7 +50,9 @@ def get_connection():
 )
 ```
 
-enter your password into the correct section and add the pw.py file to your .gitignore
+enter your password into the correct section.
+
+Add the pw.py file to your .gitignore, as \*\*/pw.py
 
 ### 5.5. Authentication error
 
