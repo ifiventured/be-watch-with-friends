@@ -1,21 +1,21 @@
-group_id	group_name	organiser_user_id	tmdb_id	episodes_per_week
-1	Gdoluwoxx	10	22	9
-2	Kwmjwcuko	4	93	12
-3	Lfofcktgh	1	20	17
-4	Cnvmbgboe	2	32	3
-5	Nybwhwkfr	6	84	16
-6	Bvkrltclw	3	52	2
-7	Kgquhpwfk	9	33	8
-8	Mrntieglf	9	54	15
-9	Ebmhmaezf	4	41	3
-10	Wxtjggicw	5	35	6
-11	Hpbtqydtf	4	82	17
-12	Sxnuzygjs	4	63	8
-13	Zjruauxiu	2	71	7
-14	Jhtauzkxg	5	90	7
-15	Gboratiim	10	65	7
-16	Okxypkjqv	9	91	17
-17	Tofoltsde	9	78	14
-18	Uhkjhsevn	10	20	6
-19	Ktgesgmjr	9	35	11
-20	Zebfonkcq	10	80	19
+group_id	group_name	description	organiser_user_id	tmdb_id	tmdb_name	poster_url	start_date	episodes_per_week	created_at
+1	Binge Watchers Club	Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante.	1	39	Lost in Channels	http://dummyimage.com/116x100.png/dddddd/000000	2026-04-30	14	2025-06-07
+2	HBO Max Mavericks	Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo.	4	43	Friends Forever	http://dummyimage.com/202x100.png/5fa2dd/ffffff	2025-10-12	9	2025-01-30
+3	Channel Surfers Society	Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor.	5	22	Stranger Shows	http://dummyimage.com/129x100.png/5fa2dd/ffffff	2026-10-14	0	2025-09-10
+4	Disney+ Dream Team	In est risus, auctor sed, tristique in, tempus sit amet, sem.	5	2	Breaking Screens	http://dummyimage.com/112x100.png/5fa2dd/ffffff	2026-02-24	12	2025-08-09
+5	Netflix Navigators	Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.	5	40	Black Mirror Marathon	http://dummyimage.com/162x100.png/dddddd/000000	2025-01-16	8	2025-10-24
+6	Channel Surfers Society	Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor.	3	32	The Crowned TV	http://dummyimage.com/225x100.png/cc0000/ffffff	2026-02-20	9	2025-08-04
+7	HBO Max Mavericks	Morbi porttitor lorem id ligula.	4	24	Friends Forever	http://dummyimage.com/154x100.png/ff4444/ffffff	2025-07-05	9	2025-09-22
+8	TV Junkies Crew	Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.	1	38	The Big Binge Theory	http://dummyimage.com/180x100.png/cc0000/ffffff	2025-04-27	4	2025-07-14
+9	Couch Potatoes United	Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum.	1	42	Breaking Screens	http://dummyimage.com/180x100.png/5fa2dd/ffffff	2025-02-28	8	2025-05-22
+10	Disney+ Dream Team	Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst.	2	11	The Crowned TV	http://dummyimage.com/185x100.png/dddddd/000000	2025-06-26	5	2025-02-16
+11	Apple TV+ Avengers	Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices.	2	27	The Secret Life of TV	http://dummyimage.com/176x100.png/ff4444/ffffff	2026-12-13	11	2025-09-24
+12	Channel Surfers Society	Mauris ullamcorper purus sit amet nulla. Quisque arcu libero, rutrum ac, lobortis vel, dapibus at, diam.	2	33	Lost in Channels	http://dummyimage.com/211x100.png/dddddd/000000	2025-07-14	12	2025-10-06
+13	Disney+ Dream Team	Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti.	3	4	The Big Binge Theory	http://dummyimage.com/208x100.png/dddddd/000000	2025-12-08	9	2025-02-17
+14	TV Addicts Alliance	Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien.	4	24	The Crowned TV	http://dummyimage.com/137x100.png/cc0000/ffffff	2026-10-21	0	2025-03-20
+15	ABC Watchers Association	Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices.	5	5	The Office Rerun	http://dummyimage.com/127x100.png/cc0000/ffffff	2026-01-21	4	2025-08-02
+16	CBS All Access Clan	Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat.	1	20	The Office Rerun	http://dummyimage.com/161x100.png/5fa2dd/ffffff	2026-12-07	13	2025-05-29
+17	Disney+ Dream Team	Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla.	2	42	Lost in Channels	http://dummyimage.com/223x100.png/ff4444/ffffff	2026-12-13	11	2025-07-22
+18	Peacock Patrol	Nulla facilisi.	5	4	The Secret Life of TV	http://dummyimage.com/177x100.png/5fa2dd/ffffff	2025-06-23	9	2025-07-14
+19	Netflix Navigators	Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio.	3	47	Friends Forever	http://dummyimage.com/153x100.png/5fa2dd/ffffff	2025-04-05	7	2025-11-14
+20	HBO Max Mavericks	Integer a nibh. In quis justo. Maecenas rhoncus aliquam lacus.	2	19	The Big Binge Theory	http://dummyimage.com/118x100.png/cc0000/ffffff	2025-08-05	3	2025-08-08
