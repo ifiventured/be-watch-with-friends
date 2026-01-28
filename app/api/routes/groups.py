@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from app.models.groups import Group, GroupCreate
 from app.db.seed.pw import get_connection
-
+from fastapi import HTTPException
 
 router = APIRouter()
 
@@ -95,3 +95,32 @@ def create_group(group: GroupCreate):
         tmdb_id=group.tmdb_id,
         episodes_per_week=group.episodes_per_week,
     )
+
+
+
+@router.delete("/groups/{group_id}")
+def delete_group(group_id: int):
+    con = get_connection()
+    con.autocommit = True
+    cursor = con.cursor()
+
+    # Check if group exists
+    cursor.execute(
+        "SELECT 1 FROM groups WHERE group_id = %s",
+        (group_id,)
+    )
+    if cursor.fetchone() is None:
+        cursor.close()
+        con.close()
+        raise HTTPException(status_code=404, detail="Group not found")
+
+    # Delete the group
+    cursor.execute(
+        "DELETE FROM groups WHERE group_id = %s",
+        (group_id,)
+    )
+
+    cursor.close()
+    con.close()
+
+    return {"message": "Group deleted successfully"}
