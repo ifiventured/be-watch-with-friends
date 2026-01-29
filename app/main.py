@@ -1,7 +1,7 @@
 #from fastapi import FastAPI
 #from app.api.routes import health, auth, groups
-from fastapi import FastAPI
-from app.api.routes import health, groups
+#from fastapi import FastAPI
+#from app.api.routes import health, groups
 #from app.api.routes import watchlist
 
 
@@ -47,8 +47,4 @@ def get_user(user_id: int):
 
     return {"user_id": row[0], "username": row[1]}
 
-    #return {"user_id": user_id, "username": username}
-
-
-#, username: str | None = None
 

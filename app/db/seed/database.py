@@ -1,4 +1,4 @@
-from pw import get_connection
+from .pw import get_connection
 import json
 from datetime import datetime
 
