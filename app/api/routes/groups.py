@@ -1,6 +1,7 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Request, HTTPException
 from app.db.seed.pw import get_connection
-from fastapi import HTTPException
+from app.dependencies import get_current_user
+
 
 router = APIRouter()
 
@@ -144,5 +145,129 @@ def get_group(group_id: int):
         con.close()
 
 # POST groups
+@router.post("/groups/")
+def create_group(data: dict):
+    group_name = data["group_name"]
+    description = data.get("description")
+    organiser_user_id = get_current_user()
+
+    con = get_connection()
+    cursor = con.cursor()
+
+    if not group_name:
+        raise HTTPException(status_code = 422, detail="group_name is essential")
+
+    try:
+        cursor.execute(
+            """
+            INSERT INTO groups (
+                group_name,
+                description,
+                organiser_user_id
+            )
+            VALUES (
+                %s,
+                %s,
+                %s
+            )
+            RETURNING
+                group_id,
+                group_name,
+                description,
+                organiser_user_id,
+                tmdb_id,
+                tmdb_name,
+                poster_url,
+                start_date,
+                episodes_per_week,
+                created_at
+            """, 
+            (
+                group_name,
+                description,
+                organiser_user_id,
+            ),
+        )
+
+        row = cursor.fetchone()
+        con.commit()
+
+        return {
+            "group_id": row[0],
+            "group_name": row[1],
+            "description": row[2],
+            "organiser_user_id": row[3],
+            "tmdb_id": row[4],
+            "tmdb_name": row[5],
+            "poster_url": row[6],
+            "start_date": row[7],
+            "episodes_per_week": row[8],
+            "created_at": row[9],
+        }
+    
+    finally:
+        cursor.close()
+        con.close()
+
+# PATCH group
+@router.patch("/groups/{group_id}")
+def add_show_and_schedule(group_id: int, data: dict):
+    tmdb_id = data["tmdb_id"]
+    start_date = data["start_date"]
+    episodes_per_week = data["episodes_per_week"]
+
+    con = get_connection()
+    cursor = con.cursor()
+
+    try:
+        cursor.execute(
+            """
+            UPDATE groups
+            SET 
+                tmdb_id = %s,
+                start_date = %s,
+                episodes_per_week = %s
+            WHERE
+                group_id = %s
+            RETURNING
+                group_id,
+                group_name,
+                description,
+                organiser_user_id,
+                tmdb_id,
+                tmdb_name,
+                poster_url,
+                start_date,
+                episodes_per_week,
+                created_at
+            """,
+            (
+                tmdb_id,
+                start_date,
+                episodes_per_week,
+                group_id
+            ),
+        )
+
+        row = cursor.fetchone()
+        con.commit()
+
+        return {
+            "group_id": row[0],
+            "group_name": row[1],
+            "description": row[2],
+            "organiser_user_id": row[3],
+            "tmdb_id": row[4],
+            "tmdb_name": row[5],
+            "poster_url": row[6],
+            "start_date": row[7],
+            "episodes_per_week": row[8],
+            "created_at": row[9],
+        }
+    
+    finally:
+        cursor.close()
+        con.close()
+
 # DELETE group
 # Group by user_id
