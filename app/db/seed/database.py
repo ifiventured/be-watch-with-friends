@@ -53,12 +53,12 @@ cursor.execute("""
     CREATE TABLE Groups (
         group_id SERIAL PRIMARY KEY,
         group_name VARCHAR NOT NULL,
-        description TEXT NULL,
+        description TEXT,
         organiser_user_id INT NOT NULL,
         tmdb_id INT,
-        tmdb_name VARCHAR NOT NULL,
-        poster_url VARCHAR NOT NULL,
-        start_date DATE NULL,       
+        tmdb_name VARCHAR,
+        poster_url VARCHAR,
+        start_date DATE,       
         episodes_per_week INT,
         created_at DATE DEFAULT CURRENT_DATE      
         )           
@@ -93,10 +93,10 @@ for user in data_user:
 for group in data_group:
     start_date = datetime.strptime(group["start_date"], "%d/%m/%Y").date()
     created_at = datetime.strptime(group["created_at"], "%d/%m/%Y").date()
-    cursor.execute("""INSERT INTO Groups (group_id, group_name, description, organiser_user_id, tmdb_id, tmdb_name, poster_url, start_date, episodes_per_week, created_at)
-                   VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+    cursor.execute("""INSERT INTO Groups (group_name, description, organiser_user_id, tmdb_id, tmdb_name, poster_url, start_date, episodes_per_week, created_at)
+                   VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
                    """, 
-                   (group["group_id"], group["group_name"], group["description"], group["organiser_user_id"], group["tmdb_id"], group["tmdb_name"], group["poster_url"], start_date, group["episodes_per_week"], created_at))
+                   (group["group_name"], group["description"], group["organiser_user_id"], group["tmdb_id"], group["tmdb_name"], group["poster_url"], start_date, group["episodes_per_week"], created_at))
 
 
 for watchlist in data_watchlist:
